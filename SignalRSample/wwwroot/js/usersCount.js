@@ -6,10 +6,19 @@ connectionUserCount.on("updateTotalViews", (value) => {
     var newCountSpan = document.getElementById("totalViewsCounter");
     newCountSpan.innerText = value.toString();
 });
-s
+
 // Invoke hub methods aka send notification to hub
 function newWindowLoadedOnClient() {
     connectionUserCount.send("NewWindowLoaded");
 }
 
 // Start Connection
+function fulfilled() {
+    console.log("Connection to User Hub Successful");
+}
+
+function rejected() {
+
+}
+
+connectionUserCount.start().then(fulfilled, rejected)
