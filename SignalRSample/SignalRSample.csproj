@@ -18,5 +18,5 @@
   <ItemGroup>
     <Folder Include="wwwroot\lib\microsoft\signalr\dist\browser\" />
   </ItemGroup>
-
+	
 </Project>
