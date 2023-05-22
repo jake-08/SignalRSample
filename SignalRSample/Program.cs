@@ -46,5 +46,7 @@ app.MapRazorPages();
 
 // Add route to SignalR Hub
 app.MapHub<UserHub>("/hubs/userCount");
+app.MapHub<DeathlyHallowsHub>("/hubs/deathlyHallows");
+app.MapHub<HouseGroupHub>("/hubs/houseGroup");
 
 app.Run();
