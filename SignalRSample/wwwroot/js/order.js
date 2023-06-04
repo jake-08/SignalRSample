@@ -1,4 +1,9 @@
-﻿var dataTable;
+﻿/// <reference path="signalr.js" />
+/// <reference path="jquery.signalR-2.4.0.js" />
+
+const { signalR } = require("./signalr");
+
+var dataTable;
 var connectionOrder = new signalR.HubConnectionBuilder().withUrl("/hubs/order").build();
 
 $(document).ready(function () {

@@ -29,7 +29,7 @@ namespace SignalRSample.Hubs
             TotalViews++;
             // Send update to all clients that total views have been updated
             await Clients.All.SendAsync("updateTotalViews", TotalViews);
-            return $"total views from {name} - {TotalViews}";
+            return $"ConnectionId {name} - {Context.ConnectionId}";
         }
     }
 }

@@ -1,16 +1,16 @@
 ﻿// Create Connection to SignalR Hub using the route provided in Program.cs
-var connectionChat = new signalR.HubConnectionBuilder().withUrl("/hubs/basicChat").build();
+var connectionBasicChat = new signalR.HubConnectionBuilder().withUrl("/hubs/basicChat").build();
 
 document.getElementById("sendMessage").disabled = true;
 
 // Connect to methods that hub invokes aka receive notifications from hub
-connectionChat.on("MessageReceived", function (user, message) {
+connectionBasicChat.on("MessageReceived", function (user, message) {
     var li = document.createElement("li");
     document.getElementById("messagesList").appendChild(li);
     li.textContent = `${user} - ${message}`;
 });
 
-connectionChat.on("UserNotFound", function (user) {
+connectionBasicChat.on("UserNotFound", function (user) {
     toastr.error(`${user} - Not Found`);
 });
 
@@ -22,13 +22,13 @@ document.getElementById("sendMessage").addEventListener("click", function (event
 
     // send message to receiver
     if (receiver.length > 0) {
-        connectionChat.send("SendMessageToReceiver", sender, receiver, message).catch(function (err) {
+        connectionBasicChat.send("SendMessageToReceiver", sender, receiver, message).catch(function (err) {
             return console.error(err.toString());
         });
     }
     // send message to all of the users
     else {
-        connectionChat.send("SendMessageToAll", sender, message).catch(function (err) {
+        connectionBasicChat.send("SendMessageToAll", sender, message).catch(function (err) {
             return console.error(err.toString());
         });
     }
@@ -37,6 +37,6 @@ document.getElementById("sendMessage").addEventListener("click", function (event
 });
 
 // Start Connection
-connectionChat.start().then(function () {
+connectionBasicChat.start().then(function () {
     document.getElementById("sendMessage").disabled = false; 
 });
