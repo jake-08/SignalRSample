@@ -16,7 +16,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 // Add SignalR Service 
-builder.Services.AddSignalR();
+var connectionAzureSignalR = builder.Configuration.GetSection("SignalR:PrimaryKey").Get<string>();
+builder.Services.AddSignalR().AddAzureSignalR(connectionAzureSignalR);
 
 var app = builder.Build();
 
@@ -41,16 +42,16 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Chat}/{id?}");
 app.MapRazorPages();
 
 // Add route to SignalR Hub
 app.MapHub<UserHub>("/hubs/userCount");
-app.MapHub<DeathlyHallowsHub>("/hubs/deathlyHallows");
-app.MapHub<HouseGroupHub>("/hubs/houseGroup");
-app.MapHub<NotificationHub>("/hubs/notification");
-app.MapHub<BasicChatHub>("/hubs/basicChat");
+//app.MapHub<DeathlyHallowsHub>("/hubs/deathlyHallows");
+//app.MapHub<HouseGroupHub>("/hubs/houseGroup");
+//app.MapHub<NotificationHub>("/hubs/notification");
+//app.MapHub<OrderHub>("/hubs/order");
+//app.MapHub<BasicChatHub>("/hubs/basicChat");
 app.MapHub<ChatHub>("/hubs/chat");
-app.MapHub<OrderHub>("/hubs/order");
 
 app.Run();

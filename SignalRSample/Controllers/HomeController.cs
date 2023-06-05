@@ -66,6 +66,18 @@ namespace SignalRSample.Controllers
             return View(chatVm);
         }
 
+        public IActionResult AdvancedChat()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ChatVM chatVm = new()
+            {
+                Rooms = _context.ChatRooms.ToList(),
+                MaxRoomAllowed = 4,
+                UserId = userId,
+            };
+            return View(chatVm);
+        }
+
         public async Task<IActionResult> DeathlyHallows(string type)
         {
             if (SD.DeathlyHallowRace.ContainsKey(type))
