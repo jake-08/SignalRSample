@@ -20,3 +20,33 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.float {
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    bottom: 40px;
+    right: 20px;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 2;
+    padding: 0;
+}
+
+.float:hover {
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.my-float {
+    font-size: 36px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+}
